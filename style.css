@@ -138,10 +138,9 @@ body {
     font-size: 1.2rem;
     padding: 10px 30px;
     border: none;
-    background-color: #002B5B;
-    cursor: pointer;
+    background-color: white;
     border-radius: 3px;
-    color: white;
+    color: #002B5B;
 }
 
 .button:hover {
