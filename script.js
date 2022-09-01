@@ -19,6 +19,14 @@ var beginAudio = new Audio('audio/begin.mp3');
 var restAudio = new Audio('audio/rest.mp3');
 var setAudio = new Audio('audio/nextSet.mp3');
 var endAudio = new Audio('audio/done.mp3');
+
+
+//functions and eventListeners for button clicks
+
+function refreshPage() {
+    window.location.reload();
+};
+
 button1.addEventListener("click", function () {
     exerciseTimerInit = exercise.value;
     restTimerInit = rest.value;
@@ -29,6 +37,12 @@ button1.addEventListener("click", beginAudioFn);
 function beginAudioFn() {
     beginAudio.play();
 }
+
+
+
+//function for counting down and pausing the inputed exercise timer
+//when timer hits zero, function checks whether there are still sets left. If so, it
+//begins startRest based on user rest input
 
 function startExercise() {
     resting.style.display = "none";
@@ -81,6 +95,10 @@ function startExercise() {
         }
     }
 };
+
+//function that starts the rest timer based on user input
+// when timer hits 0, returns startExercise and begins countdown
+//button does not allow pausing during rest timer because I don't feel it is necessary
 
 
 function startRest() {

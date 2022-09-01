@@ -127,6 +127,12 @@ body {
     grid-column: 1/4;
 }
 
+.button-container4 {
+    display: grid;
+    justify-content: center;
+    grid-column: 1/4;
+}
+
 .button {
     width: 13rem;
     font-size: 1.2rem;
