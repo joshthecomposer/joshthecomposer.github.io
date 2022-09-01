@@ -2,6 +2,7 @@
 var button1 = document.getElementById("button-container");
 var button2 = document.getElementById("button-container2");
 var button3 = document.getElementById("button-container3");
+var button5 = document.getElementById("button-container5");
 
 //Exercise Variables
 var exercise = document.getElementById("exercise");
@@ -31,12 +32,23 @@ button1.addEventListener("click", function () {
     exerciseTimerInit = exercise.value;
     restTimerInit = rest.value;
 });
-button1.addEventListener("click", startExercise);
-button1.addEventListener("click", beginAudioFn);
+
+button1.addEventListener("click", function (){
+    if (exercise.value <= 0) {
+        alert("Come on, do the bare minimum here. Enter a positive value in the exercise field at the very least...");
+    } else {
+        button5.addEventListener("click", function () {
+            startExercise();
+        });
+        startExercise();
+        beginAudioFn();
+        
+    };
+});
 
 function beginAudioFn() {
     beginAudio.play();
-}
+};
 
 
 
@@ -45,10 +57,11 @@ function beginAudioFn() {
 //begins startRest based on user rest input
 
 function startExercise() {
+
     resting.style.display = "none";
     working.style.display = "block";
     button3.style.display = "none";
-    button3
+    button5.style.display = "none";
     var timer;
 
     if (saveState) {
@@ -61,7 +74,7 @@ function startExercise() {
     button1.style.display = "none";
     button2.style.display = "grid";
     button2.addEventListener("click", function () {
-        button1.style.display = "grid";
+        button5.style.display = "grid";
         button2.style.display = "none";
         clearInterval(myInterval);
         saveState = true;
@@ -71,7 +84,6 @@ function startExercise() {
     myInterval = setInterval(n, 1000);
 
     function n() {
-            button1.removeEventListener("click", beginAudioFn);
             if (timer >= 1) { 
                 timer--;
                 document.getElementById('timer-text').innerHTML = timer;
