@@ -12,6 +12,7 @@ var exerciseTimerInit;
 var restTimerInit;
 var working = document.getElementById("working");
 var resting = document.getElementById("resting");
+var finished = document.getElementById("finished");
 
 //Audio Variables
 var beginAudio = new Audio('audio/begin.mp3');
@@ -66,6 +67,9 @@ function startExercise() {
                     sets.value = 0;
                     endAudio.play();
                     clearInterval(myInterval);
+                    document.getElementById('timer-text').innerHTML = "00";
+                    working.style.display = "none";
+                    finished.style.display = "block";
                     return;
                 } else {
                     clearInterval(myInterval);

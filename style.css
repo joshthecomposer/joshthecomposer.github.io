@@ -82,6 +82,11 @@ body {
     background-color: crimson;
 }
 
+#finished {
+    display: none;
+    background-color: green;
+}
+
 .form {
     display: grid;
     grid-template-columns: 4rem 4rem 4rem;
@@ -140,7 +145,7 @@ body {
     border: none;
     background-color: white;
     border-radius: 3px;
-    color: #002B5B;
+    color: lightgray;
 }
 
 .button:hover {
