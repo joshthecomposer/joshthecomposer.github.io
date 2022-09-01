@@ -10,6 +10,8 @@ var sets = document.getElementById("sets");
 var saveState = false;
 var exerciseTimerInit;
 var restTimerInit;
+var working = document.getElementById("working");
+var resting = document.getElementById("resting");
 
 //Audio Variables
 var beginAudio = new Audio('audio/begin.mp3');
@@ -27,8 +29,9 @@ function beginAudioFn() {
     beginAudio.play();
 }
 
-
 function startExercise() {
+    resting.style.display = "none";
+    working.style.display = "block";
     button3.style.display = "none";
     button3
     var timer;
@@ -39,7 +42,7 @@ function startExercise() {
         timer = exerciseTimerInit;
         saveState = false;
     }
-
+    document.getElementById("button").innerHTML = "Continue";
     button1.style.display = "none";
     button2.style.display = "grid";
     button2.addEventListener("click", function () {
@@ -77,6 +80,8 @@ function startExercise() {
 
 
 function startRest() {
+    working.style.display = "none";
+    resting.style.display = "block";
     button2.style.display = "none";
     button3.style.display = "grid";
     var timer = rest.value;
