@@ -54,9 +54,13 @@ function storeExValue() {
         exPlayBtn.removeEventListener('click', storeExValue);
         storedExValue = parseInt(exInput.value, 10);
         console.log('storedExValue = ' + storedExValue);
-    
+
         //Hide sets input field and display a set countdown in its place
         document.getElementById('sets').style.display = 'none';
+
+        //Hide header with an animation
+        hideHeader();
+        
         document.getElementById('hideThis').style.display = 'none';
         document.getElementById('setsLeft').style.display = '';
         startExTimer();
