@@ -10,18 +10,15 @@ function playBeep() {
 };
 
 function playRest() { 
-    beep.currentTime = 0;
     rest.play();
     return;
 };
 
 function playEnd() { 
-    beep.currentTime = 0;
     victory.play();
     return;
 };
 
 function playBeep2() {
-    beep.currentTime = 0;
     beep2.play();
 };
