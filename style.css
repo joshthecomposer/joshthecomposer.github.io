@@ -3,16 +3,17 @@
 }
 
 * {
+    font-family: "Roboto Mono";
     margin: 0;
     border: 0;
     padding:  0;
     box-sizing: border-box;
     vertical-align: top;
-    outline: red 1px dashed;
+    /* outline: red 1px dashed; */
 }
 
 html {
-    font-family: "Roboto Mono", monospace;
+    /* font-family: "Roboto Mono"; */
     font-weight: 700;
 }
 
@@ -43,7 +44,7 @@ form span {
 .header {
     display: flex;
     background-color: slategray;
-    /* height: 7rem; */
+    /* height: 15rem; */
     justify-content: center;
     margin-bottom: 0;
     width: 100%;
@@ -60,19 +61,19 @@ form span {
 
 
 .flex-container h3 {
-    font-size: 5.2rem;
+    font-size: 4.8rem;
     text-align: center;
     margin: 0 auto;
 }
 
 .flex-container p {
-    font-size: 2.0rem;
+    font-size: 2rem;
     font-style: italic;
     text-align: center;
     margin: 0 auto;
-    margin-right:  -1px;
-    margin-top: -3px;
-    margin-bottom: 10px;
+    margin-right:  -.1rem;
+    margin-top: -.3rem;
+    margin-bottom: 1rem;
 }
 
 .main h1{
@@ -110,9 +111,9 @@ form span {
 
 .form {
     display: grid;
-    grid-template-columns: 10rem 10rem 10rem;
-    row-gap: 1.5rem;
-    column-gap: 0.75rem;
+    grid-template-columns: 10.2rem 10.2rem 10.2rem;
+    row-gap: 2.5rem;
+    /* column-gap: 0.75rem; */
     align-items: center;
     /* width: 20rem; */
     font-size: 1.5;
@@ -121,11 +122,11 @@ form span {
 
 
 .form label {
-    font-size: 2.5rem;
+    font-size: 3rem;
 }
 
 input[type="number"] {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: bold;
     font-family: 'Roboto Mono';
     -moz-appearance: textfield;
@@ -139,10 +140,11 @@ input::-webkit-inner-spin-button {
 
 .formInput {
     background-color:#e5e5e5;
-    max-width: 8rem;
+    max-width: 9.5rem;
+    /* height: 2.5rem; */
     border-radius: 4px;
     border: 1px solid slategray;
-    padding: 7px 10px;
+    padding: .1rem 1.2rem;
     font-size: inherit;
     text-align: center;
     justify-self: center;
@@ -155,8 +157,9 @@ input::-webkit-inner-spin-button {
 }
 
 .button {
-    width: 15rem;
-    font-size: 2.5rem;
+    /* width: 15rem; */
+    font-family: 'Roboto Mono';
+    font-size: 3rem;
     padding: 10px 30px;
     border: none;
     background-color: slategray;
@@ -172,7 +175,7 @@ input::-webkit-inner-spin-button {
 
 #setsLeft {
     color:#e5e5e5;
-    font-size: 1.1rem;
+    font-size: 2rem;
     padding: 7px 10px;
     text-align: center;
 }
