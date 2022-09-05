@@ -1,34 +1,33 @@
-
 //Exercise Variables
 
 //Two different play buttons, one for resuming exercise after pausing and one for resuming rest after pausing.
 //This is to avoid weird issues with conflicting event listeners
-var exPlayBtn = document.getElementById('exPlay');
-var rePlayBtn = document.getElementById('rePlay');
-var pauseBtn = document.getElementById('pause');
-var resetBtn = document.getElementById('reset');
+let exPlayBtn = document.getElementById('exPlay');
+let rePlayBtn = document.getElementById('rePlay');
+let pauseBtn = document.getElementById('pause');
+let resetBtn = document.getElementById('reset');
 
-var working = document.getElementById('working');
-var resting = document.getElementById('resting');
-var finished = document.getElementById('finished');
+let working = document.getElementById('working');
+let resting = document.getElementById('resting');
+let finished = document.getElementById('finished');
 
 //These variables are initialized so that later we can pull the user input values as strings to be converted to integers.
-var exInput = document.getElementById('exercise');
-var reInput = document.getElementById('rest');
-var seInput = document.getElementById('sets');
+let exInput = document.getElementById('exercise');
+let reInput = document.getElementById('rest');
+let seInput = document.getElementById('sets');
 
 //The variable which is updated for the countdown and for the remaining sets
-var timerText = document.getElementById('time');
-var setsText = document.getElementById('setsLeft');
+let timerText = document.getElementById('time');
+let setsText = document.getElementById('setsLeft');
 
 //some empty variables to use later
-var currentTextEx;
-var currentTextRe;
+let currentTextEx;
+let currentTextRe;
 
 //The user input integers that are stored after user input values are converted from strings
-var storedExValue;
-var storedReValue;
-var storedSetsValue;
+let storedExValue;
+let storedReValue;
+let storedSetsValue;
 
 //Initial button press stores values from input fields
 exPlayBtn.addEventListener('click', storeSeValue);

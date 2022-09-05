@@ -1,7 +1,7 @@
-var beep = new Audio("./assets/beep.mp3");
-var beep2 = new Audio("./assets/highBeep.mp3");
-var rest = new Audio("./assets/rest.wav");
-var victory = new Audio("./assets/victory.wav");
+let beep = new Audio("./assets/beep.mp3");
+let beep2 = new Audio("./assets/highBeep.mp3");
+let rest = new Audio("./assets/rest.wav");
+let victory = new Audio("./assets/victory.wav");
 
 function playBeep() {
     beep.currentTime = 0;
