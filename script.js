@@ -60,6 +60,7 @@ function storeExValue() {
 
         //Hide header with an animation
         hideHeader();
+        revealCurrentActivity();
         
         document.getElementById('hideThis').style.display = 'none';
         document.getElementById('setsLeft').style.display = '';
@@ -98,7 +99,7 @@ function storeSeValue() {
 //EXERCISE TIMER FUNCTIONS
 
 function startExTimer() {
-    working.style.display = '';
+    // working.style.display = '';
     if (currentTextEx !== undefined) {
         console.log("current text ex = " + currentTextEx);
         timerText.innerText = currentTextEx;

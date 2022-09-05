@@ -35,13 +35,6 @@ form span {
     justify-self: flex-start;
 }
 
-.container {
-    position: relative;
-    margin: 0 auto;
-    padding-bottom: 2rem;
-    overflow: hidden;
-}
-
 .header {
     display: flex;
     background-color: #2A2A2A;
@@ -50,16 +43,6 @@ form span {
     margin-bottom: 0;
     width: 100%;
 }
-
-.flex-container {
-    display: flex;
-    flex-direction: column;
-    background-color: #2A2A2A;
-    align-items: center;
-    justify-content: center;
-    color: #e5e5e5;
-}
-
 
 .flex-container h3 {
     font-size: 4.8rem;
@@ -77,6 +60,29 @@ form span {
     margin-bottom: 1rem;
 }
 
+.container {
+    position: relative;
+    margin: 0 auto;
+    /* padding-bottom: 2rem; */
+    overflow: hidden;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #2A2A2A;
+    align-items: center;
+    justify-content: center;
+    color: #e5e5e5;
+}
+
+.counter {
+    margin: 0 auto;
+    padding: 0;
+    height: 24rem;
+    line-height: 1;
+}
+
 .main h1{
     font-size: 20rem;
     width:  100%;
@@ -86,17 +92,25 @@ form span {
 
 .currentActivity {
     display: inline-block;
-    /* width: 40%; */
-    font-size: 5.0rem;
-    padding: .1rem 10rem;
+    width: 50rem;
+    height: 8rem;
     border: none;
     border-radius: 3px;
     margin: 0 auto;
     margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+#workingText {
+    display: none;
+    font-size: 3.5rem;
+    transform: translateY(+1.4rem);
 }
 
 #working {
     /* display: none; */
+    height: 0;
+
     background-color: darkgreen;
 }
 
@@ -105,9 +119,20 @@ form span {
     background-color: darkred;
 }
 
+#restText {
+    font-size: 3.5rem;
+    transform: translateY(+1.4rem);
+}
+
 #finished {
     /* display: none; */
     background-color: darkgreen;
+
+}
+
+#finishedText {
+    font-size: 3.5rem;
+    transform: translateY(+1.4rem);
 }
 
 .form {
