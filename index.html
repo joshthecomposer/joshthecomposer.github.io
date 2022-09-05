@@ -17,45 +17,45 @@
         </div>
         <div class="main">
             <div class="counter">
-                <h1><span id="timer-text" class="timer-text">00</span></h1>
+                <h1><span id="time" class="timer-text">00</span></h1>
             </div>
-            <div id="working" class="currentActivity">
+            <!-- <div class="counter">
+                <h1><span id="setsLeft" class="timer-text">00</span></h1>
+            </div> -->
+            <div id="working" class="currentActivity" style="display: none">
                 <h4>Working</h4>
             </div>
-            <div id="resting" class="currentActivity">
+            <div id="resting" class="currentActivity" style="display: none">
                 <h4>Resting</h4>
             </div>
-            <div id="finished" class="currentActivity">
+            <div id="finished" class="currentActivity" style="display: none">
                 <h4>You're finished!</h4>
             </div>
         </div>
-        <form class="form" method="post">
-            <label for="exercise">Exercise</label>
-                <input class="form__input" type="number" id="exercise" value=""/>
+        <div class="form">
+            <label>Exercise</label>
+                <input class="formInput" type="number" id="exercise"/>
                 <span class="units">(seconds)</span>
             <label for="rest">Rest</label>
-                <input class="form__input" type="number" id="rest" value=""/>
+                <input class="formInput" type="number" id="rest"/>
                 <span class="units">(seconds)</span>
             <label for="sets">Sets</label>
-                <input class="form__input" type="number" id="sets" value=""/>
-                <span class="units">How many sets?</span>
+                <input class="formInput" type="number" id="sets"/>
+                <p id="setsLeft" style="display: none">00</p>
+                <span id="hideThis" class="units">How many sets?</span>
             <div id="button-container" class="button-container">
-                <button type="button" id="button" class="button" onclick="">Start</button>
+                <button type="button" id="exPlay" class="button">exPlay</button>
+                <button type="button" id="rePlay" class="button" style="display:none">rePlay</button>
             </div>
-            <div id="button-container5" class="button-container5">
-                <button type="button" id="button5" class="button" onclick="">Continue</button>
+            <div id="button-container2" class="button-container">
+                <button type="button" id="pause" class="button" onclick="">Pause</button>
             </div>
-            <div id="button-container2" class="button-container2">
-                <button type="button" id="button2" class="button" onclick="">Pause</button>
-            </div>
-            <div id="button-container3" class="button-container3">
-                <button type="button" id="button3" class="fakeButton" onclick="">(Resting)</button>
-            </div>
-            <div id="button-container4" class="button-container4">
+            <div id="reset" class="button-container">
                 <button type="button" id="button4" class="button" onclick="refreshPage()">Reset</button>
             </div>
-        </form>
+        </div>
     </div>
+    <script src="audio.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

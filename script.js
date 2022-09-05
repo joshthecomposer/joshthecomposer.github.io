@@ -1,138 +1,180 @@
-//Button Variables
-var button1 = document.getElementById("button-container");
-var button2 = document.getElementById("button-container2");
-var button3 = document.getElementById("button-container3");
-var button5 = document.getElementById("button-container5");
 
 //Exercise Variables
-var exercise = document.getElementById("exercise");
-var rest = document.getElementById("rest");
-var sets = document.getElementById("sets");
-var saveState = false;
-var exerciseTimerInit;
-var restTimerInit;
-var working = document.getElementById("working");
-var resting = document.getElementById("resting");
-var finished = document.getElementById("finished");
 
-//Audio Variables
-var beginAudio = new Audio('audio/begin.mp3');
-var restAudio = new Audio('audio/rest.mp3');
-var setAudio = new Audio('audio/nextSet.mp3');
-var endAudio = new Audio('audio/done.mp3');
+//Two different play buttons, one for resuming exercise after pausing and one for resuming rest after pausing.
+//This is to avoid weird issues with conflicting event listeners
+var exPlayBtn = document.getElementById('exPlay');
+var rePlayBtn = document.getElementById('rePlay');
+var pauseBtn = document.getElementById('pause');
+var resetBtn = document.getElementById('reset');
 
+var working = document.getElementById('working');
+var resting = document.getElementById('resting');
+var finished = document.getElementById('finished');
 
-//functions and eventListeners for button clicks
+//These variables are initialized so that later we can pull the user input values as strings to be converted to integers.
+var exInput = document.getElementById('exercise');
+var reInput = document.getElementById('rest');
+var seInput = document.getElementById('sets');
+
+//The variable which is updated for the countdown and for the remaining sets
+var timerText = document.getElementById('time');
+var setsText = document.getElementById('setsLeft');
+
+//some empty variables to use later
+var currentTextEx;
+var currentTextRe;
+
+//The user input integers that are stored after user input values are converted from strings
+var storedExValue;
+var storedReValue;
+var storedSetsValue;
+
+//Initial button press stores values from input fields
+exPlayBtn.addEventListener('click', storeSeValue);
+exPlayBtn.addEventListener('click', storeExValue);
+exPlayBtn.addEventListener('click', storeReValue);
+
+//on start button click, timer is executed and we are thrown into the loop
+// also display a sets countdown on button press
+// exPlayBtn.addEventListener('click', startExTimer);
+
+//Refresh Page when reset button is clicked
 
 function refreshPage() {
     window.location.reload();
+    return false;
 };
 
-button1.addEventListener("click", function () {
-    exerciseTimerInit = exercise.value;
-    restTimerInit = rest.value;
-});
-
-button1.addEventListener("click", function (){
-    if (exercise.value <= 0) {
-        alert("Come on, do the bare minimum here. Enter a positive value in the exercise field at the very least...");
+function storeExValue() {
+    //check if input field of exercise is at least 1 otherwise alert the user
+    if (exInput.value < 1 || exInput.value === NaN) {
+        alert('Please enter a nonzero value in the exercise field');
+        return;
     } else {
-        button5.addEventListener("click", function () {
-            startExercise();
-        });
-        startExercise();
-        beginAudioFn();
-        
+        exPlayBtn.removeEventListener('click', storeExValue);
+        storedExValue = parseInt(exInput.value, 10);
+        console.log('storedExValue = ' + storedExValue);
+    
+        //Hide sets input field and display a set countdown in its place
+        document.getElementById('sets').style.display = 'none';
+        document.getElementById('hideThis').style.display = 'none';
+        document.getElementById('setsLeft').style.display = '';
+        startExTimer();
+    }
+};
+
+function storeReValue() {
+    if (reInput.value < 1 || reInput.value === NaN) {
+        return;
+    } else {
+        exPlayBtn.removeEventListener('click', storeReValue);
+        storedReValue = parseInt(reInput.value, 10);
+        console.log('storedReValue = ' + storedReValue);
     };
-});
-
-function beginAudioFn() {
-    beginAudio.play();
 };
 
-
-
-//function for counting down and pausing the inputed exercise timer
-//when timer hits zero, function checks whether there are still sets left. If so, it
-//begins startRest based on user rest input
-
-function startExercise() {
-
-    resting.style.display = "none";
-    working.style.display = "block";
-    button3.style.display = "none";
-    button5.style.display = "none";
-    var timer;
-
-    if (saveState) {
-        timer = document.getElementById('timer-text').innerHTML;
+function storeSeValue() {
+    if (seInput.value < 1 || seInput.value === NaN) {
+        return;
     } else {
-        timer = exerciseTimerInit;
-        saveState = false;
-    }
-    document.getElementById("button").innerHTML = "Continue";
-    button1.style.display = "none";
-    button2.style.display = "grid";
-    button2.addEventListener("click", function () {
-        button5.style.display = "grid";
-        button2.style.display = "none";
-        clearInterval(myInterval);
-        saveState = true;
-})
-    document.getElementById('timer-text').innerHTML = timer;
-
-    myInterval = setInterval(n, 1000);
-
-    function n() {
-            if (timer >= 1) { 
-                timer--;
-                document.getElementById('timer-text').innerHTML = timer;
-                saveState = false;
-            } else {
-                if (sets.value <= 1) {
-                    sets.value = 0;
-                    endAudio.play();
-                    clearInterval(myInterval);
-                    document.getElementById('timer-text').innerHTML = "00";
-                    working.style.display = "none";
-                    finished.style.display = "block";
-                    return;
-                } else {
-                    clearInterval(myInterval);
-                    restAudio.play();
-                    startRest();
-                    sets.value = sets.value - 1;
-                    sets.innerHTML = sets.value;
-                }
-        }
+        exPlayBtn.removeEventListener('click', storeSeValue);
+        storedSetsValue = parseInt(seInput.value, 10);
+        setsText.innerText = storedSetsValue;
+        console.log('total sets = ' + storedSetsValue);
     }
 };
 
-//function that starts the rest timer based on user input
-// when timer hits 0, returns startExercise and begins countdown
-//button does not allow pausing during rest timer because I don't feel it is necessary
 
 
-function startRest() {
-    working.style.display = "none";
-    resting.style.display = "block";
-    button2.style.display = "none";
-    button3.style.display = "grid";
-    var timer = rest.value;
+//EXERCISE TIMER FUNCTIONS
 
-    document.getElementById('timer-text').innerHTML = timer;
+function startExTimer() {
+    working.style.display = '';
+    if (currentTextEx !== undefined) {
+        console.log("current text ex = " + currentTextEx);
+        timerText.innerText = currentTextEx;
+        exPlayBtn.removeEventListener('click', startExTimer);
+        myInterval = setInterval(counterEx, 1000);
+    } else {
+        exPlayBtn.removeEventListener('click', startExTimer);
+        timerText.innerText = storedExValue;
+        myInterval = setInterval(counterEx, 1000);
+    }
+};
 
-    myInterval = setInterval(n, 1000);
-
-    function n() {
-        if (timer >= 1) {
-            timer--;
-            document.getElementById('timer-text').innerHTML = timer;
+function counterEx() {
+    if (timerText.innerText >= 1) {
+        if (timerText.innerText <= 3 && timerText.innerText > 0) {
+            playBeep();
+        }
+        pauseBtn.addEventListener('click', function () { 
+            clearInterval(myInterval);
+            currentTextEx = timerText.innerText;
+            exPlayBtn.addEventListener('click', startExTimer);
+            pauseBtn.removeEventListener('click', arguments.callee);
+        });
+        timerText.innerText--;
+    } else {
+        if (storedSetsValue <= 1) {
+            clearInterval(myInterval);
+            setsText.innerText = 0;
+            working.style.display = 'none';
+            finished.style.display = '';
+            playEnd();
+            return;
         } else {
             clearInterval(myInterval);
-            setAudio.play();
-            saveState = false;
-            startExercise();
+            currentTextRe = storedReValue;
+            exPlayBtn.style.display = 'none';
+            rePlayBtn.style.display = '';
+            working.style.display = 'none';
+            resting.style.display = '';
+            storedSetsValue--;
+            setsText.innerText = storedSetsValue;
+            playRest();
+            return startReTimer();
         }
     }
-}
+};
+
+
+//REST TIMER FUNCTIONS
+
+function startReTimer() {
+    if (currentTextRe !== undefined) {
+        console.log("current text re = " + currentTextRe);
+        timerText.innerText = currentTextRe;
+        rePlayBtn.removeEventListener('click', startReTimer);
+        myInterval = setInterval(counterRe, 1000);
+    } else {
+        rePlayBtn.removeEventListener('click', startReTimer);
+        timerText.innerText = storedReValue;
+        myInterval = setInterval(counterRe, 1000);
+    }
+};
+
+function counterRe() {
+    if (timerText.innerText >= 1) {
+        if (timerText.innerText <= 3 && timerText.innerText > 0) {
+            playBeep();
+        }
+        pauseBtn.addEventListener('click', function () { 
+            clearInterval(myInterval);
+            currentTextRe = timerText.innerText;
+            rePlayBtn.addEventListener('click', startReTimer);
+            pauseBtn.removeEventListener('click', arguments.callee);
+        });
+        timerText.innerText--;
+    } else {
+        clearInterval(myInterval);
+        currentTextEx = storedExValue;
+        rePlayBtn.style.display = 'none';
+        exPlayBtn.style.display = '';
+        resting.style.display = 'none';
+        working.style.display = '';
+        playBeep2();
+        return startExTimer();
+    }
+};
+

@@ -1,3 +1,12 @@
+* {
+    margin: 0;
+    border: 0;
+    padding:  0;
+    box-sizing: border-box;
+    vertical-align: top;
+    /* outline: red 1px dashed; */
+}
+
 html {
     font-family: "Roboto Mono", monospace;
     font-size: 16px;
@@ -7,8 +16,9 @@ html {
 
 body {
     padding: 0 auto;
-    background-color: white;
+    background-color: #121212;
     text-align: center;
+    color: #e5e5e5;
 }
 
 label {
@@ -22,9 +32,9 @@ form span {
 }
 
 .container {
-    width: 23.5rem;
+    width: 25rem;
     margin: 0 auto;
-    border: 3px solid #002B5B;
+    border: 3px solid slategray;
     padding-bottom: 2rem;
     border-radius: 1rem;
     overflow: hidden;
@@ -32,7 +42,7 @@ form span {
 
 .header {
     display: flex;
-    background-color: #002B5B;
+    background-color: slategray;
     height: 5.5rem;
     justify-content: center;
     margin-bottom: 0;
@@ -42,7 +52,7 @@ form span {
 .flex-container {
     display: flex;
     flex-direction: column;
-    background-color: #002B5B;
+    background-color: slategray;
     align-items: center;
     justify-content: center;
     color: white;
@@ -69,7 +79,6 @@ form span {
     font-size: 9rem;
     width:  100%;
     margin: 0 auto;
-    background-color: white;
     text-align: center;
 }
 
@@ -79,24 +88,23 @@ form span {
     padding: .1rem 0 .1rem 0;
     border: none;
     border-radius: 3px;
-    color: white;
     margin: 0 auto;
     margin-bottom: 1.5rem;
 }
 
 #working {
-    display: none;
-    background-color: green;
+    /* display: none; */
+    background-color: darkgreen;
 }
 
 #resting {
-    display: none;
-    background-color: crimson;
+    /* display: none; */
+    background-color: darkred;
 }
 
 #finished {
-    display: none;
-    background-color: green;
+    /* display: none; */
+    background-color: darkgreen;
 }
 
 .form {
@@ -118,12 +126,21 @@ form span {
 input[type="number"] {
     font-size: 1.1rem;
     font-weight: bold;
+    font-family: 'Roboto Mono';
+    -moz-appearance: textfield;
 }
 
-.form__input {
-    max-width: 4rem;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.formInput {
+    background-color:#e5e5e5;
+    max-width: 5rem;
     border-radius: 4px;
-    border: 1px solid #002B5B;
+    border: 1px solid slategray;
     padding: 7px 10px;
     font-size: inherit;
     text-align: center;
@@ -136,50 +153,25 @@ input[type="number"] {
     grid-column: 1/4;
 }
 
-.button-container2 {
-    display: none;
-    justify-content: center;
-    grid-column: 1/4;
-}
-
-.button-container3 {
-    display: none;
-    justify-content: center;
-    grid-column: 1/4;
-}
-
-.button-container4 {
-    display: grid;
-    justify-content: center;
-    grid-column: 1/4;
-}
-.button-container5 {
-    display: none;
-    justify-content: center;
-    grid-column: 1/4;
-}
-
 .button {
     width: 13rem;
     font-size: 1.4rem;
     padding: 10px 30px;
     border: none;
-    background-color: #002B5B;
+    background-color: slategray;
     cursor: pointer;
     border-radius: 3px;
-    color: white;
-}
-
-.fakeButton {
-    width: 13rem;
-    font-size: 1.4rem;
-    padding: 10px 30px;
-    border: none;
-    background-color: white;
-    border-radius: 3px;
-    color: lightgray;
+    color:#e5e5e5;
 }
 
 .button:hover {
-    background-color: #215ca0
+    background-color: #e5e5e5;
+    color: black;
+}
+
+#setsLeft {
+    color:#e5e5e5;
+    font-size: 1.1rem;
+    padding: 7px 10px;
+    text-align: center;
 }
