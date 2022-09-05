@@ -48,7 +48,7 @@ function refreshPage() {
 function storeExValue() {
     //check if input field of exercise is at least 1 otherwise alert the user
     if (exInput.value < 1 || exInput.value === NaN) {
-        alert('Please enter a nonzero value in the exercise field');
+        alert('Please enter a nonzero positive number in the exercise field');
         return;
     } else {
         exPlayBtn.removeEventListener('click', storeExValue);
@@ -75,12 +75,17 @@ function storeReValue() {
 
 function storeSeValue() {
     if (seInput.value < 1 || seInput.value === NaN) {
+        exPlayBtn.removeEventListener('click', storeSeValue);
+        storedSetsValue = 1;
+        setsText.innerText = storedSetsValue;
+        console.log('total sets = ' + storedSetsValue);
         return;
     } else {
         exPlayBtn.removeEventListener('click', storeSeValue);
         storedSetsValue = parseInt(seInput.value, 10);
         setsText.innerText = storedSetsValue;
         console.log('total sets = ' + storedSetsValue);
+        return;
     }
 };
 
@@ -121,7 +126,10 @@ function counterEx() {
             working.style.display = 'none';
             finished.style.display = '';
             playEnd();
-            return;
+            setTimeout(function () {
+                window.location.reload();
+                return false;
+            }, 5000);
         } else {
             clearInterval(myInterval);
             currentTextRe = storedReValue;
